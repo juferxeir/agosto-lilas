@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agosto Lilás — Educação em Cores</title>
+<style>
+  :root {
+    --lilac-50: #f6f0fb;
+    --lilac-100: #ebddf5;
+    --lilac-200: #d6b8e8;
+    --lilac-300: #b990d4;
+    --lilac-400: #9b6dc1;
+    --lilac-500: #7d4ba8;
+    --lilac-600: #5f3690;
+    --lilac-700: #4a2773;
+    --lilac-800: #381c58;
+    --lilac-900: #261042;
+    --warm: #f9f5fc;
+    --ink: #2b1840;
+    --muted: #6b5a7f;
+    --emergency: #c0392b;
+    --shadow: 0 10px 30px rgba(74, 39, 115, 0.12);
+    --shadow-lg: 0 20px 50px rgba(74, 39, 115, 0.18);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--warm);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--lilac-600); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(246, 240, 251, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--lilac-200);
+    z-index: 100;
+    padding: 14px 20px;
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    justify-content: space-between;
+  }
+  .nav-brand {
+    font-weight: 700;
+    color: var(--lilac-700);
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-brand::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--lilac-400), var(--lilac-700));
+  }
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--lilac-700);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover {
+    background: var(--lilac-200);
+    text-decoration: none;
+  }
+
+  /* ===== HERO ===== */
+  header.hero {
+    background: linear-gradient(135deg, var(--lilac-700) 0%, var(--lilac-500) 60%, var(--lilac-300) 100%);
+    color: white;
+    padding: 80px 24px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.12), transparent 40%),
+                      radial-gradient(circle at 80% 70%, rgba(255,255,255,0.08), transparent 40%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; max-width: 800px; margin: 0 auto; }
+  .hero-tag {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 30px;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 18px;
+    letter-spacing: -0.5px;
+  }
+  .hero p.lede {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    opacity: 0.95;
+    max-width: 640px;
+    margin: 0 auto 30px;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: var(--lilac-700);
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s;
+  }
+  .hero-cta:hover { transform: translateY(-2px); text-decoration: none; }
+  .ribbon {
+    display: inline-block;
+    width: 36px;
+    height: 60px;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .ribbon::before, .ribbon::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 50px;
+    background: linear-gradient(to bottom, #d6b8e8, #9b6dc1);
+    border-radius: 7px;
+  }
+  .ribbon::before { left: 4px; transform: rotate(-15deg); }
+  .ribbon::after { right: 4px; transform: rotate(15deg); }
+
+  /* ===== SECTIONS ===== */
+  main { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 70px 0 30px; }
+  .section-tag {
+    display: inline-block;
+    color: var(--lilac-600);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: var(--lilac-800);
+    margin-bottom: 14px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+  }
+  h3 {
+    font-size: 1.2rem;
+    color: var(--lilac-700);
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .section-intro {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 720px;
+    margin-bottom: 36px;
+  }
+
+  /* ===== CARDS / GRIDS ===== */
+  .grid {
+    display: grid;
+    gap: 22px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 26px;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--lilac-400);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .card p { color: var(--muted); font-size: 0.96rem; }
+
+  /* ===== STATS ===== */
+  .stats-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-top: 30px;
+  }
+  .stat {
+    background: linear-gradient(135deg, var(--lilac-50), white);
+    padding: 28px 22px;
+    border-radius: 16px;
+    border-left: 5px solid var(--lilac-500);
+    text-align: left;
+  }
+  .stat .num {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--lilac-700);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat .desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  /* ===== TYPES OF VIOLENCE ===== */
+  .type-list { list-style: none; padding: 0; margin-top: 24px; }
+  .type-item {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 4px 12px rgba(74, 39, 115, 0.06);
+    border-left: 4px solid var(--lilac-300);
+  }
+  .type-item strong {
+    color: var(--lilac-700);
+    font-size: 1.05rem;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .type-item span { color: var(--muted); font-size: 0.95rem; }
+
+  /* ===== NEWS / CASES ===== */
+  .news-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  .news-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+  }
+  .news-card .news-head {
+    background: linear-gradient(135deg, var(--lilac-600), var(--lilac-400));
+    color: white;
+    padding: 16px 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+  }
+  .news-card .news-body {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .news-card h4 {
+    color: var(--lilac-800);
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .news-card p {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-bottom: 14px;
+    flex: 1;
+  }
+  .news-card .news-source {
+    font-size: 0.82rem;
+    color: var(--lilac-600);
+    font-weight: 600;
+  }
+
+  /* ===== HELP / EMERGENCY ===== */
+  .help-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  .help-card {
+    background: white;
+    padding: 26px;
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--lilac-500);
+  }
+  .help-card.urgent {
+    background: linear-gradient(135deg, #fff, #fef0ee);
+    border-left-color: var(--emergency);
+  }
+  .help-number {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--lilac-700);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .help-card.urgent .help-number { color: var(--emergency); }
+  .help-name {
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .help-desc { color: var(--muted); font-size: 0.93rem; }
+
+  /* ===== TIPS ===== */
+  .tip {
+    display: flex;
+    gap: 18px;
+    background: white;
+    padding: 22px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+    box-shadow: 0 4px 14px rgba(74,39,115,0.08);
+  }
+  .tip-num {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--lilac-500), var(--lilac-700));
+    color: white;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tip-text strong {
+    display: block;
+    color: var(--lilac-700);
+    margin-bottom: 4px;
+  }
+  .tip-text span { color: var(--muted); font-size: 0.95rem; }
+
+  /* ===== SIGNAL BOX ===== */
+  .signal-box {
+    background: linear-gradient(135deg, var(--lilac-700), var(--lilac-500));
+    color: white;
+    padding: 36px;
+    border-radius: 18px;
+    margin-top: 26px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 700px) {
+    .signal-box { grid-template-columns: 1fr 1fr; align-items: center; }
+  }
+  .signal-box h3 { color: white; font-size: 1.4rem; margin-bottom: 12px; }
+  .signal-box p { opacity: 0.95; font-size: 0.98rem; }
+  .signal-steps {
+    background: rgba(255,255,255,0.12);
+    padding: 22px;
+    border-radius: 14px;
+  }
+  .signal-steps ol { padding-left: 22px; }
+  .signal-steps li { margin-bottom: 8px; font-size: 0.95rem; }
+
+  /* ===== CYCLE ===== */
+  .cycle-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    margin-top: 24px;
+  }
+  .cycle-step {
+    background: white;
+    padding: 22px;
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    border-bottom: 4px solid var(--lilac-400);
+  }
+  .cycle-step .step-num {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 50%;
+    background: var(--lilac-100);
+    color: var(--lilac-700);
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  /* ===== ABOUT US ===== */
+  .about-block {
+    background: linear-gradient(135deg, var(--lilac-50), white);
+    border-radius: 18px;
+    padding: 40px 32px;
+    box-shadow: var(--shadow);
+    margin-top: 26px;
+    border-top: 5px solid var(--lilac-500);
+  }
+  .about-intro {
+    color: var(--muted);
+    font-size: 1.02rem;
+    margin-bottom: 30px;
+    max-width: 740px;
+  }
+  .about-intro strong { color: var(--lilac-700); }
+  .team-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .team-member {
+    background: white;
+    border-radius: 14px;
+    padding: 26px 22px;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(74,39,115,0.08);
+    border-bottom: 4px solid var(--lilac-400);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .team-member:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .team-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--lilac-500), var(--lilac-700));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 auto 14px;
+    letter-spacing: -0.5px;
+  }
+  .team-name {
+    color: var(--lilac-800);
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+  .institution-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--lilac-700);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 24px;
+    letter-spacing: 0.5px;
+  }
+  .institution-badge::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--lilac-200);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--lilac-900);
+    color: white;
+    padding: 50px 24px 30px;
+    margin-top: 60px;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  footer h3 { color: white; margin-bottom: 14px; font-size: 1.3rem; }
+  footer p { opacity: 0.9; margin-bottom: 18px; max-width: 700px; margin-left: auto; margin-right: auto; }
+  .sources {
+    background: rgba(255,255,255,0.06);
+    padding: 24px;
+    border-radius: 14px;
+    margin-top: 24px;
+    text-align: left;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sources h4 { color: var(--lilac-200); margin-bottom: 10px; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; }
+  .sources ul { list-style: none; padding: 0; }
+  .sources li { margin-bottom: 6px; font-size: 0.88rem; }
+  .sources a { color: var(--lilac-200); }
+  .credit {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">Agosto Lilás</div>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#dados">Dados</a></li>
+      <li><a href="#tipos">Tipos</a></li>
+      <li><a href="#noticias">Notícias</a></li>
+      <li><a href="#ajuda">Ajuda</a></li>
+      <li><a href="#prevencao">Prevenção</a></li>
+      <li><a href="#sobre-nos">Sobre Nós</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-content">
+    <div class="ribbon" aria-hidden="true"></div>
+    <span class="hero-tag">Educação em Cores</span>
+    <h1>Agosto Lilás</h1>
+    <p class="lede">Uma campanha nacional pelo fim da violência contra a mulher. Informação que acolhe, dados que mobilizam e caminhos para quem precisa de ajuda — ou quer ser parte da rede de apoio.</p>
+    <a href="#ajuda" class="hero-cta">Preciso de ajuda agora →</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== SOBRE ===== -->
+<section id="sobre">
+  <span class="section-tag">Sobre a campanha</span>
+  <h2>O que é o Agosto Lilás</h2>
+  <p class="section-intro">O Agosto Lilás é a campanha nacional dedicada ao enfrentamento da violência contra a mulher. O mês foi escolhido porque, em 7 de agosto de 2006, a presidenta Luiz Inácio Lula da Silva sancionou a <strong>Lei nº 11.340/2006 — Lei Maria da Penha</strong>, marco legal que tornou o Brasil referência mundial na proteção de mulheres em situação de violência doméstica e familiar.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>A lei que mudou o Brasil</h3>
+      <p>A Lei Maria da Penha criou mecanismos de proteção, medidas protetivas de urgência, varas especializadas e a tipificação da violência doméstica em cinco formas distintas.</p>
+    </div>
+    <div class="card">
+      <h3>Por que lilás?</h3>
+      <p>A cor representa a luta feminina, a sensibilidade da causa e a união de mulheres em torno do direito a viver sem violência. O laço lilás é símbolo internacional dessa mobilização.</p>
+    </div>
+    <div class="card">
+      <h3>Lei do Feminicídio (2015 + 2024)</h3>
+      <p>A Lei 13.104/2015 incluiu o feminicídio no Código Penal. Em 2024, a Lei 14.994 (Pacote Antifeminicídio) tornou-o crime autônomo, com pena de <strong>20 a 40 anos de reclusão</strong>.</p>
+    </div>
+    <div class="card">
+      <h3>Educação em cores</h3>
+      <p>Este projeto une cores e causas: lilás para a vida das mulheres, agosto para a memória de uma lei que salva vidas, e educação para que cada pessoa se torne agente de mudança.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DADOS ===== -->
+<section id="dados">
+  <span class="section-tag">A realidade em números</span>
+  <h2>O Brasil que precisa mudar</h2>
+  <p class="section-intro">Dados oficiais de 2025, divulgados pelo Fórum Brasileiro de Segurança Pública, Senado Federal e Ministério das Mulheres, mostram a urgência da mobilização.</p>
+
+  <div class="stats-grid">
+    <div class="stat">
+      <div class="num">1.568</div>
+      <div class="desc">mulheres vítimas de feminicídio no Brasil em 2025 — recorde histórico e alta de 4,7% sobre 2024</div>
+    </div>
+    <div class="stat">
+      <div class="num">4</div>
+      <div class="desc">mulheres mortas por dia em razão de gênero no Brasil em 2025</div>
+    </div>
+    <div class="stat">
+      <div class="num">62,6%</div>
+      <div class="desc">das vítimas de feminicídio em 2025 eram mulheres negras</div>
+    </div>
+    <div class="stat">
+      <div class="num">3,7 mi</div>
+      <div class="desc">de brasileiras sofreram algum tipo de violência doméstica ou familiar em 2025 (DataSenado)</div>
+    </div>
+    <div class="stat">
+      <div class="num">66,3%</div>
+      <div class="desc">dos feminicídios aconteceram dentro da própria casa da vítima</div>
+    </div>
+    <div class="stat">
+      <div class="num">8 em 10</div>
+      <div class="desc">feminicídios são cometidos por parceiros ou ex-companheiros</div>
+    </div>
+    <div class="stat">
+      <div class="num">86 mil</div>
+      <div class="desc">denúncias recebidas pelo Ligue 180 apenas entre janeiro e julho de 2025</div>
+    </div>
+    <div class="stat">
+      <div class="num">~50%</div>
+      <div class="desc">dos feminicídios ocorrem em cidades com até 100 mil habitantes, onde há menos serviços especializados</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TIPOS DE VIOLÊNCIA ===== -->
+<section id="tipos">
+  <span class="section-tag">Reconhecer para enfrentar</span>
+  <h2>As cinco formas de violência</h2>
+  <p class="section-intro">A Lei Maria da Penha tipifica cinco formas de violência doméstica e familiar contra a mulher. Identificá-las é o primeiro passo para romper o ciclo.</p>
+
+  <ul class="type-list">
+    <li class="type-item">
+      <strong>Violência física</strong>
+      <span>Qualquer conduta que ofenda a integridade ou saúde corporal: tapas, empurrões, socos, queimaduras, uso de armas, lesões que deixam (ou não) marcas visíveis.</span>
+    </li>
+    <li class="type-item">
+      <strong>Violência psicológica</strong>
+      <span>Inclui humilhações, chantagens, ameaças, isolamento de família e amigos, controle de horários e roupas, gaslighting. Desde 2023, é também crime no Código Penal (Lei 14.550/2023).</span>
+    </li>
+    <li class="type-item">
+      <strong>Violência sexual</strong>
+      <span>Forçar relação sexual, impedir o uso de métodos contraceptivos, obrigar à pornografia, induzir ao aborto, comercializar a sexualidade — mesmo dentro do casamento.</span>
+    </li>
+    <li class="type-item">
+      <strong>Violência patrimonial</strong>
+      <span>Reter, subtrair, destruir documentos, objetos, bens, valores ou direitos econômicos. Inclui controle financeiro abusivo e sabotagem do trabalho da mulher.</span>
+    </li>
+    <li class="type-item">
+      <strong>Violência moral</strong>
+      <span>Calúnia, difamação ou injúria — espalhar mentiras, expor a vida íntima, divulgar imagens sem consentimento, atacar a reputação da mulher.</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ===== NOTÍCIAS / CASOS ===== -->
+<section id="noticias">
+  <span class="section-tag">O que está acontecendo</span>
+  <h2>Notícias e casos recentes</h2>
+  <p class="section-intro">A imprensa e os órgãos oficiais têm documentado o avanço da violência e as respostas legais e sociais. Selecionamos fatos recentes que ilustram tanto o problema quanto a mobilização.</p>
+
+  <div class="news-grid">
+    <div class="news-card">
+      <div class="news-head">2026 · Recorde histórico</div>
+      <div class="news-body">
+        <h4>Brasil atinge maior número de feminicídios da história</h4>
+        <p>Pesquisa do Fórum Brasileiro de Segurança Pública revela 1.568 mulheres mortas em 2025 — o pior resultado desde a tipificação do crime em 2015.</p>
+        <span class="news-source">Fonte: Agência Brasil / FBSP</span>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-head">2024 · Marco legal</div>
+      <div class="news-body">
+        <h4>Lei 14.994 endurece pena do feminicídio</h4>
+        <p>O Pacote Antifeminicídio transformou o crime em tipo autônomo, com pena de 20 a 40 anos. Também aumentou penas para ameaça e descumprimento de medida protetiva (agora 2 a 5 anos).</p>
+        <span class="news-source">Fonte: Defensoria Pública / Senado Federal</span>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-head">2025 · Ligue 180</div>
+      <div class="news-body">
+        <h4>86 mil denúncias só até julho de 2025</h4>
+        <p>A Central de Atendimento à Mulher registrou 86.025 denúncias entre janeiro e julho. 44,3% das vítimas eram mulheres negras, e em quase metade dos casos o agressor era parceiro ou ex.</p>
+        <span class="news-source">Fonte: Ministério das Mulheres / Agência Brasil</span>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-head">2025 · Interior em alerta</div>
+      <div class="news-body">
+        <h4>Pequenas cidades têm as maiores taxas</h4>
+        <p>Cidades com até 100 mil habitantes concentram cerca da metade dos feminicídios do país, embora reúnam só 41% da população feminina — justamente onde há menos delegacias especializadas.</p>
+        <span class="news-source">Fonte: Senado Federal / FBSP</span>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-head">19 anos da Lei Maria da Penha</div>
+      <div class="news-body">
+        <h4>"Avançada, mas a violência não diminuiu"</h4>
+        <p>Em agosto de 2025, a Lei completou 19 anos. Especialistas reconhecem que é uma das legislações mais avançadas do mundo, mas alertam que a aplicação ainda enfrenta gargalos de recursos e fiscalização.</p>
+        <span class="news-source">Fonte: Agência Brasil</span>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-head">Painel oficial</div>
+      <div class="news-body">
+        <h4>Governo lança site sobre a jornada das vítimas</h4>
+        <p>O Ministério da Justiça e Segurança Pública lançou um painel público com dados sobre o percurso das vítimas de feminicídio em 2025 — da primeira denúncia ao crime — para guiar políticas públicas.</p>
+        <span class="news-source">Fonte: gov.br/mj</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AJUDA ===== -->
+<section id="ajuda">
+  <span class="section-tag">Onde buscar ajuda</span>
+  <h2>Canais de denúncia e apoio</h2>
+  <p class="section-intro">Você não está sozinha. Há uma rede de atendimento gratuito, sigiloso e disponível 24 horas. Salve esses números e compartilhe com quem você ama.</p>
+
+  <div class="help-grid">
+    <div class="help-card urgent">
+      <div class="help-number">190</div>
+      <div class="help-name">Polícia Militar — Emergência</div>
+      <div class="help-desc">Para situações de risco imediato, agressão em andamento ou descumprimento de medida protetiva. Atendimento 24h.</div>
+    </div>
+    <div class="help-card">
+      <div class="help-number">180</div>
+      <div class="help-name">Central de Atendimento à Mulher</div>
+      <div class="help-desc">Denúncias (inclusive anônimas), orientação jurídica e psicológica, informações sobre direitos e serviços. 24 horas, gratuito.</div>
+    </div>
+    <div class="help-card">
+      <div class="help-number">100</div>
+      <div class="help-name">Disque Direitos Humanos</div>
+      <div class="help-desc">Para denúncias de violações de direitos humanos em geral, incluindo violência contra mulheres em situação de vulnerabilidade.</div>
+    </div>
+    <div class="help-card">
+      <div class="help-number">DEAM</div>
+      <div class="help-name">Delegacia da Mulher</div>
+      <div class="help-desc">Unidades especializadas em atender mulheres vítimas. Para registrar B.O. e solicitar medida protetiva de urgência.</div>
+    </div>
+    <div class="help-card">
+      <div class="help-number">CMB</div>
+      <div class="help-name">Casa da Mulher Brasileira</div>
+      <div class="help-desc">Espaço integrado que reúne delegacia, juizado, defensoria, atendimento psicossocial e abrigamento — tudo em um só lugar.</div>
+    </div>
+    <div class="help-card">
+      <div class="help-number">CRAM</div>
+      <div class="help-name">Centro de Referência</div>
+      <div class="help-desc">Atendimento psicológico, social e orientação jurídica continuados. Procure o CRAM ou CREAS mais próximo.</div>
+    </div>
+  </div>
+
+  <div class="signal-box">
+    <div>
+      <h3>Sinal silencioso de socorro</h3>
+      <p>Reconhecido internacionalmente, o gesto permite que uma mulher peça ajuda sem falar — útil em videochamadas, em público, ou diante de alguém de confiança. Se você vê este gesto, ligue 190 imediatamente.</p>
+    </div>
+    <div class="signal-steps">
+      <ol>
+        <li><strong>1.</strong> Mostre a palma da mão aberta, voltada para fora</li>
+        <li><strong>2.</strong> Dobre o polegar para dentro da palma</li>
+        <li><strong>3.</strong> Feche os outros quatro dedos sobre o polegar</li>
+        <li><strong>4.</strong> Direcione o gesto à pessoa de quem se pede ajuda</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PREVENÇÃO E COMUNICAÇÃO ===== -->
+<section id="prevencao">
+  <span class="section-tag">Prevenir, escutar, apoiar</span>
+  <h2>Como reconhecer, conversar e ajudar</h2>
+  <p class="section-intro">A violência raramente começa com agressão física. Ela cresce no silêncio, no controle e na desqualificação. Conhecer os sinais e saber como agir pode salvar uma vida — talvez a sua, talvez a de alguém próximo.</p>
+
+  <h3 style="margin-top: 20px;">Sinais de alerta no comportamento do parceiro</h3>
+  <div class="tip">
+    <div class="tip-num">!</div>
+    <div class="tip-text">
+      <strong>Ciúme excessivo e controle</strong>
+      <span>Quer saber onde você está o tempo todo, monitora redes sociais, exige senhas, controla com quem você fala.</span>
+    </div>
+  </div>
+  <div class="tip">
+    <div class="tip-num">!</div>
+    <div class="tip-text">
+      <strong>Isolamento social</strong>
+      <span>Critica suas amizades, briga com sua família, faz você se sentir culpada por sair, até que você pare de procurar pessoas próximas.</span>
+    </div>
+  </div>
+  <div class="tip">
+    <div class="tip-num">!</div>
+    <div class="tip-text">
+      <strong>Humilhação e desqualificação</strong>
+      <span>Xingamentos, comparações, piadas para diminuir você, especialmente em público. "É só brincadeira" usado para mascarar agressão.</span>
+    </div>
+  </div>
+  <div class="tip">
+    <div class="tip-num">!</div>
+    <div class="tip-text">
+      <strong>Controle financeiro</strong>
+      <span>Impede você de trabalhar, exige justificativa para cada gasto, retém documentos ou dinheiro, sabota sua independência econômica.</span>
+    </div>
+  </div>
+  <div class="tip">
+    <div class="tip-num">!</div>
+    <div class="tip-text">
+      <strong>Ameaças e intimidação</strong>
+      <span>Ameaças contra você, filhos, animais ou bens. Quebra objetos, grita, intimida fisicamente — mesmo sem encostar.</span>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 36px;">Se alguém próxima vive isso, como apoiar</h3>
+  <div class="tip">
+    <div class="tip-num">1</div>
+    <div class="tip-text">
+      <strong>Escute sem julgar</strong>
+      <span>Não pergunte "por que você não saiu?". Saia da pressão e da culpa: ofereça presença. Romper o ciclo é um processo, não uma decisão pronta.</span>
+    </div>
+  </div>
+  <div class="tip">
+    <div class="tip-num">2</div>
+    <div class="tip-text">
+      <strong>Acredite na primeira vez</strong>
+      <span>Muitas mulheres relatam terem sido descredibilizadas ao contar. Sua escuta atenta pode ser o primeiro passo que ela precisa para se reconhecer em risco.</span>
+    </div>
+  </div>
+  <div class="tip">
+    <div class="tip-num">3</div>
+    <div class="tip-text">
+      <strong>Combine uma palavra-código</strong>
+      <span>Acorde com amigas próximas uma palavra ou gesto que signifique "preciso de ajuda agora". Pode ser usada por mensagem, ligação ou em pessoa.</span>
+    </div>
+  </div>
+  <div class="tip">
+    <div class="tip-num">4</div>
+    <div class="tip-text">
+      <strong>Tenha os números à mão</strong>
+      <span>180, 190, delegacia da mulher local. Em risco imediato, ligue 190 sem hesitar — mesmo que ela peça para não chamar.</span>
+    </div>
+  </div>
+  <div class="tip">
+    <div class="tip-num">5</div>
+    <div class="tip-text">
+      <strong>Não confronte o agressor</strong>
+      <span>Não é seguro para você nem para ela. O confronto pode escalar a violência. O caminho é proteção, não enfrentamento direto.</span>
+    </div>
+  </div>
+  <div class="tip">
+    <div class="tip-num">6</div>
+    <div class="tip-text">
+      <strong>Respeite o tempo dela</strong>
+      <span>Sair leva tempo, recursos e segurança. Mantenha a porta aberta — uma mensagem por semana, um café, lembrar que ela tem para onde voltar.</span>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 36px;">O ciclo da violência (Instituto Maria da Penha)</h3>
+  <div class="cycle-grid">
+    <div class="cycle-step">
+      <div class="step-num">1</div>
+      <h4>Tensão</h4>
+      <p style="color: var(--muted); font-size: 0.93rem;">Pequenos incidentes, irritabilidade, humilhações, ameaças. A mulher tenta "controlar" o ambiente para evitar a explosão.</p>
+    </div>
+    <div class="cycle-step">
+      <div class="step-num">2</div>
+      <h4>Explosão</h4>
+      <p style="color: var(--muted); font-size: 0.93rem;">A tensão acumulada se transforma em agressão — verbal, física, sexual ou psicológica intensa.</p>
+    </div>
+    <div class="cycle-step">
+      <div class="step-num">3</div>
+      <h4>Arrependimento</h4>
+      <p style="color: var(--muted); font-size: 0.93rem;">"Lua de mel": o agressor pede desculpas, promete mudar, oferece presentes. Confunde e prende a mulher emocionalmente.</p>
+    </div>
+    <div class="cycle-step">
+      <div class="step-num">4</div>
+      <h4>Recomeço</h4>
+      <p style="color: var(--muted); font-size: 0.93rem;">O ciclo reinicia — geralmente em intervalos mais curtos e com violência mais intensa. Romper o ciclo exige apoio externo.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 36px;">Para homens que querem ser aliados</h3>
+  <div class="grid" style="margin-top: 18px;">
+    <div class="card">
+      <h3>Olhe para dentro</h3>
+      <p>Revise piadas, comentários, atitudes possessivas. Machismo cotidiano alimenta a cultura que sustenta a violência grave.</p>
+    </div>
+    <div class="card">
+      <h3>Interrompa entre amigos</h3>
+      <p>"Não tem graça", "não fale assim dela". Comentários machistas em grupos masculinos são sementes de violência — interromper é prevenir.</p>
+    </div>
+    <div class="card">
+      <h3>Acolha sem protagonismo</h3>
+      <p>Se uma mulher confia em você, ouça. Não tome decisões por ela, não vire o herói da história. Centro do cuidado é ela.</p>
+    </div>
+    <div class="card">
+      <h3>Eduque os meninos</h3>
+      <p>Filhos, sobrinhos, alunos. Ensine respeito, gestão de frustração, expressão saudável de emoções. Prevenção começa na infância.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOBRE NÓS ===== -->
+<section id="sobre-nos">
+  <span class="section-tag">Quem fez este projeto</span>
+  <h2>Sobre Nós</h2>
+  <p class="section-intro">Somos um grupo de estudantes movidas pela convicção de que ciência também é cuidado, escuta e compromisso social. Este site nasceu da união entre conhecimento acadêmico e responsabilidade com a vida das mulheres brasileiras.</p>
+
+  <div class="about-block">
+    <p class="about-intro">Este projeto foi desenvolvido por estudantes do <strong>5º semestre de Biomedicina</strong> da <strong>UNISA — Universidade de Santo Amaro</strong>, como parte do projeto de extensão <strong>"Educação em Cores"</strong>, dedicado a transformar saberes universitários em mobilização social. Acreditamos que falar sobre violência contra a mulher é também um ato de cuidado em saúde — e que cada informação compartilhada pode salvar uma vida.</p>
+
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="team-avatar">JF</div>
+        <div class="team-name">Júlia Ferreira Teixeira</div>
+      </div>
+      <div class="team-member">
+        <div class="team-avatar">VP</div>
+        <div class="team-name">Vitoria Paulina dos Santos</div>
+      </div>
+      <div class="team-member">
+        <div class="team-avatar">AL</div>
+        <div class="team-name">Ana Luísa Maranhão</div>
+      </div>
+      <div class="team-member">
+        <div class="team-avatar">BB</div>
+        <div class="team-name">Beatriz Barbosa Oliveira</div>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <span class="institution-badge">UNISA · Biomedicina · 5º semestre</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <h3>Agosto Lilás · Educação em Cores</h3>
+    <p>Projeto de extensão universitária dedicado a transformar informação em mobilização. Compartilhe esta página. Salve os telefones. Acolha quem precisa. Romper o silêncio é o primeiro passo para romper o ciclo.</p>
+
+    <div class="sources">
+      <h4>Fontes consultadas</h4>
+      <ul>
+        <li>• <a href="https://www12.senado.leg.br/institucional/procuradoria/noticias/feminicidios-crescem-4-7-em-2025-pequenas-cidades-tem-maiores-taxas" target="_blank">Senado Federal — Feminicídios crescem 4,7% em 2025</a></li>
+        <li>• <a href="https://agenciabrasil.ebc.com.br/direitos-humanos/noticia/2026-02/brasil-atinge-recorde-de-feminicidios-em-2025" target="_blank">Agência Brasil — Brasil atinge recorde de feminicídios em 2025</a></li>
+        <li>• <a href="https://www12.senado.leg.br/noticias/materias/2025/11/24/datasenado-violencia-de-genero-atinge-3-7-milhoes-de-brasileiras" target="_blank">DataSenado — Violência atinge 3,7 milhões de brasileiras</a></li>
+        <li>• <a href="https://agenciabrasil.ebc.com.br/direitos-humanos/noticia/2025-08/ligue-180-recebe-86-mil-denuncias-de-violencia-contra-mulher-ate-julho" target="_blank">Agência Brasil — Ligue 180 recebe 86 mil denúncias até julho</a></li>
+        <li>• <a href="https://forumseguranca.org.br/publicacoes/anuario-brasileiro-de-seguranca-publica/" target="_blank">19º Anuário Brasileiro de Segurança Pública (FBSP, 2025)</a></li>
+        <li>• <a href="https://www.institutomariadapenha.org.br/violencia-domestica/ciclo-da-violencia.html" target="_blank">Instituto Maria da Penha — Ciclo da Violência</a></li>
+        <li>• <a href="https://www.institutomariadapenha.org.br/lei-11340/tipos-de-violencia.html" target="_blank">Instituto Maria da Penha — Tipos de Violência</a></li>
+        <li>• <a href="https://www.defensoria.ce.def.br/noticia/defensoria-explica-mudancas-na-lei-do-feminicidio-que-aumenta-pena-de-reclusao-para-ate-40-anos/" target="_blank">Defensoria do Ceará — Mudanças na Lei do Feminicídio (Lei 14.994/2024)</a></li>
+        <li>• <a href="https://agenciagov.ebc.com.br/noticias/202508/agosto-lilas-reforca-enfrentamento-a-violencia-contra-a-mulher-no-brasil" target="_blank">Agência Gov — Agosto Lilás reforça enfrentamento</a></li>
+      </ul>
+    </div>
+
+    <div class="credit">
+      Conteúdo educativo. Não substitui orientação jurídica, médica ou psicológica profissional. Em emergência, ligue 190.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
